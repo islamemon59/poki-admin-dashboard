@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
-import Dashboard from "../Dashboard/Dashboard";
 import DashboardLayout from "../Layout/DashboardLayout";
+import DashboardHome from "../Dashboard/DashboardHome";
 
 export const router = createBrowserRouter([
     {
@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                Component: Dashboard,
+                Component: DashboardHome,
             },
         ]
     }
