@@ -1,13 +1,26 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { BiLogOut } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
 import DashboardNavLinks from "../Components/DashboardNavLinks/DashboardNavLinks";
+import useAuth from "../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const DashboardLayout = () => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+  const { signOutUser } = useAuth();
+  const navigate = useNavigate();
 
-  const handleLogOut = () => {};
+  const handleLogOut = () => {
+    signOutUser()
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((err) => {
+        toast.error(err.message)
+        console.log(err);
+      });
+  };
 
   return (
     <>

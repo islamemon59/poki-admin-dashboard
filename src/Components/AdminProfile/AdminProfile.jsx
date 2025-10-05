@@ -18,7 +18,7 @@ export default function AdminProfile() {
     <div className="min-h-[calc(100vh-50px)] flex justify-center items-center">
       <div className="w-full max-w-sm mx-auto bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transform transition duration-500 hover:scale-[1.02]">
         {/* Header and Background */}
-        <div className="h-28 bg-gradient-to-br from-emerald-500 to-green-700 relative">
+        <div className="h-20 bg-gradient-to-br from-emerald-500 to-green-700 relative">
           {/* Edit Button */}
           <button
             title="Edit Profile"
@@ -39,7 +39,7 @@ export default function AdminProfile() {
 
         <div className="p-6 text-center">
           {/* Name and Title */}
-          <h2 className="text-3xl font-extrabold text-gray-900 mt-2">
+          <h2 className="text-3xl font-extrabold text-gray-800 mt-2">
             {adminData.name}
           </h2>
           <p className="text-lg font-medium text-gray-600 mb-6">
@@ -60,11 +60,6 @@ export default function AdminProfile() {
               <span className="font-medium">{adminData.location}</span>
             </div>
           </div>
-
-          {/* Action Button */}
-          <button className="mt-8 w-full py-3 bg-emerald-600 text-white font-semibold rounded-xl hover:bg-emerald-700 transition duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-emerald-500/50">
-            View Detailed Settings
-          </button>
         </div>
       </div>
     </div>
