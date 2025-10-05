@@ -95,7 +95,7 @@ const DashboardLayout = () => {
         <footer className="border-t border-emerald-700 dark:border-emerald-800 p-3">
           <button
             onClick={handleLogOut}
-            className="flex w-full items-center justify-center gap-2 rounded p-3 font-bold text-white transition-colors hover:text-black dark:hover:text-emerald-300"
+            className="flex w-full items-center justify-center gap-2 rounded p-3 font-bold text-white transition-colors hover:text-red-500 dark:hover:text-emerald-300"
           >
             <BiLogOut size={24} />
             Logout
