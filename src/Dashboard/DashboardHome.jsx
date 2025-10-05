@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const DashboardHome = () => {
   return (
     <div>
-      <h1 class="text-3xl font-bold underline">Welcome Admin</h1>
+      <h1 className='text-3xl font-extrabold'>Welcome Admin</h1>
     </div>
   );
 };
 
-export default DashboardHome;
+export default DashboardHome
