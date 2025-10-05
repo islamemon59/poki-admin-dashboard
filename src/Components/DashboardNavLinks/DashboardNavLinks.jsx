@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 import { FiHome } from "react-icons/fi";
 import { FaGamepad, FaUserShield } from "react-icons/fa";
-import { MdSystemUpdateAlt } from "react-icons/md";
+import { MdOutlineGames, MdSystemUpdateAlt } from "react-icons/md";
 
 const DashboardNavLinks = () => {
   const linkClasses = ({ isActive }) =>
@@ -19,12 +19,20 @@ const DashboardNavLinks = () => {
             Home
           </div>
         </NavLink>
-        <NavLink to="/addGames" className={linkClasses}>
-          <FaGamepad className="text-xl" />
-          <div className="flex flex-1 flex-col text-xl font-semibold overflow-hidden truncate">
-            Add Games
-          </div>
-        </NavLink>
+      <NavLink to="/games" className={linkClasses}>
+        <MdOutlineGames className="text-2xl text-white" />
+        <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold overflow-hidden truncate">
+          Games
+        </div>
+      </NavLink>
+
+      {/* Add Games */}
+      <NavLink to="/addGames" className={linkClasses}>
+        <FaGamepad className="text-2xl text-white" />
+        <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold overflow-hidden truncate">
+          Add Games
+        </div>
+      </NavLink>
 
         <NavLink to="/updateGames" className={linkClasses}>
           <MdSystemUpdateAlt className="text-xl" />
@@ -33,10 +41,10 @@ const DashboardNavLinks = () => {
           </div>
         </NavLink>
 
-        <NavLink to="/adminProfile" className={linkClasses}>
+        <NavLink to="/profile" className={linkClasses}>
           <FaUserShield className="text-xl" />
           <div className="flex flex-1 flex-col text-xl font-semibold overflow-hidden truncate">
-            Admin Profile
+            Profile
           </div>
         </NavLink>
       </li>
