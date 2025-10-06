@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import GoogleButton from "../../Components/SocialLogin/GoogleLogin";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -128,6 +129,7 @@ export default function Register() {
             </Link>
           </p>
         </form>
+        <GoogleButton/>
       </div>
     </div>
   );

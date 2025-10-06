@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import GoogleButton from "../../Components/SocialLogin/GoogleLogin";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -35,6 +36,8 @@ export default function Login() {
       toast.error(`${error.message}`);
     }
   };
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#3489BD] via-[#65B0D5] to-[#2E7A7A] p-4">
@@ -115,6 +118,7 @@ export default function Login() {
             </Link>
           </p>
         </form>
+        <GoogleButton />
       </div>
     </div>
   );
