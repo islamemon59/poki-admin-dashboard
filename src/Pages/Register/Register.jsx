@@ -6,6 +6,16 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [isValue, setIsValue] = useState("");
 
+
+  const handleRegister = (e) => {
+    e.preventDefault()
+    const form = e.target;
+    const name = form.value;
+    const email = form.email;
+    const password = form.password;
+    console.log(name, email, password);
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#3489BD] via-[#65B0D5] to-[#2E7A7A] p-4">
       <div className="bg-white/20 backdrop-blur-xl shadow-2xl rounded-2xl p-8 w-full max-w-md border border-white/30">
@@ -13,7 +23,7 @@ export default function Register() {
           Create Account 🌱
         </h2>
 
-        <form className="space-y-5">
+        <form onClick={handleRegister} className="space-y-5">
           {/* Name */}
           <div className="form-control">
             <label className="label">
@@ -22,6 +32,7 @@ export default function Register() {
             <div className="relative">
               <FiUser className="absolute left-3 top-3 text-white text-xl" />
               <input
+              name="name"
                 type="text"
                 placeholder="John Doe"
                 className="input input-bordered w-full pl-10 bg-white/30 text-gray-700 placeholder-white/70 focus:outline-none outline-none border-none focus:ring-2 focus:ring-[#EDF6F8]"
@@ -38,6 +49,7 @@ export default function Register() {
             <div className="relative">
               <FiMail className="absolute left-3 top-3 text-white text-xl" />
               <input
+              name="email"
                 type="email"
                 placeholder="your@email.com"
                 className="input input-bordered w-full pl-10 bg-white/30 text-gray-700 placeholder-white/70 focus:outline-none outline-none border-none focus:ring-2 focus:ring-[#EDF6F8]"
@@ -54,6 +66,7 @@ export default function Register() {
             <div className="relative">
               <FiLock className="absolute left-3 top-3 text-white text-xl" />
               <input
+              name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 onChange={(e) => setIsValue(e.target.value)}

@@ -1,10 +1,31 @@
 import { useState } from "react";
 import { FiMail, FiLock } from "react-icons/fi";
 import { Link } from "react-router";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isValue, setIsValue] = useState("");
+  const {signInUser} = useAuth()
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.value;
+    const password = form.value;
+    console.log(email, password);
+
+  try{
+    const res = await signInUser(email, password)
+    console.log(res);
+
+  } catch(error) {
+    console.log(error);
+    toast.error(`${error.message}`)
+  }
+
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#3489BD] via-[#65B0D5] to-[#2E7A7A] p-4">
@@ -12,7 +33,7 @@ export default function Login() {
         <h2 className="text-3xl font-bold text-white text-center mb-6">
           Welcome Back 👋
         </h2>
-        <form className="space-y-5">
+        <form onClick={handleLogin} className="space-y-5">
           {/* Email Input */}
           <div className="form-control">
             <label className="label">
@@ -21,6 +42,7 @@ export default function Login() {
             <div className="relative">
               <FiMail className="absolute left-3 top-3 text-white text-xl" />
               <input
+                name="email"
                 type="email"
                 placeholder="your@email.com"
                 className="input input-bordered w-full text-gray-700 pl-10 bg-white/30 border-none outline-none  placeholder-white/70 focus:outline-none focus:ring-2 font-medium focus:ring-[#EDF6F8]"
@@ -37,6 +59,7 @@ export default function Login() {
             <div className="relative">
               <FiLock className="absolute left-3 top-3 text-white text-xl" />
               <input
+                name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 onChange={(e) => setIsValue(e.target.value)}
