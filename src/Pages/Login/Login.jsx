@@ -1,30 +1,39 @@
 import { useState } from "react";
 import { FiMail, FiLock } from "react-icons/fi";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isValue, setIsValue] = useState("");
-  const {signInUser} = useAuth()
+  const { signInUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const email = form.value;
-    const password = form.value;
+    const email = form.email.value;
+    const password = form.password.value;
     console.log(email, password);
 
-  try{
-    const res = await signInUser(email, password)
-    console.log(res);
-
-  } catch(error) {
-    console.log(error);
-    toast.error(`${error.message}`)
-  }
-
+    try {
+      const res = await signInUser(email, password);
+      console.log(res);
+      if (res.user) {
+        Swal.fire({
+          title: "Successfully Login",
+          icon: "success",
+          draggable: true,
+        });
+        navigate("/");
+        form.reset();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(`${error.message}`);
+    }
   };
 
   return (
@@ -33,7 +42,7 @@ export default function Login() {
         <h2 className="text-3xl font-bold text-white text-center mb-6">
           Welcome Back 👋
         </h2>
-        <form onClick={handleLogin} className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-5">
           {/* Email Input */}
           <div className="form-control">
             <label className="label">
