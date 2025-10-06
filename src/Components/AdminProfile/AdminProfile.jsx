@@ -4,14 +4,16 @@ import {
   FaMapMarkerAlt,
   FaCalendarAlt,
 } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
 
 export default function AdminProfile() {
+  const {user} = useAuth()
   const adminData = {
-    name: "Emon Hossain",
+    name: `${user?.displayName}`,
     title: "Platform Administrator",
-    email: "emon.admin@platform.com",
+    email: `${user?.email}`,
     location: "Dhaka, Bangladesh",
-    avatarUrl: "https://i.ibb.co/L5k6h6f/admin-avatar.jpg", // Replace with actual image URL
+    avatarUrl: `${user?.photoURL}`, // Replace with actual image URL
   };
 
   return (
