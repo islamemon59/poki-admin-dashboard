@@ -6,6 +6,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import ForbiddenPage from "../Components/Forbidden/Forbidden";
 import AdminRoute from "../Private/AdminRoute";
+import UpdateProfile from "../Components/UpdateProfile/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+        {
+    path: "/updateProfile",
+    Component: UpdateProfile,
+  },
       {
         path: "/profile",
         Component: AdminProfile,
@@ -42,4 +47,5 @@ export const router = createBrowserRouter([
     path: "/forbidden",
     Component: ForbiddenPage,
   },
+
 ]);

@@ -5,6 +5,7 @@ import {
   FaCalendarAlt,
 } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
+import { Link } from "react-router";
 
 export default function AdminProfile() {
   const {user} = useAuth()
@@ -22,12 +23,13 @@ export default function AdminProfile() {
         {/* Header and Background */}
         <div className="h-20 bg-gradient-to-br from-emerald-500 to-green-700 relative">
           {/* Edit Button */}
-          <button
+          <Link
+          to="/updateProfile"
             title="Edit Profile"
             className="absolute top-4 right-4 p-2 rounded-full bg-white/20 text-white hover:bg-white/40 transition duration-200"
           >
             <FaUserEdit className="text-xl" />
-          </button>
+          </Link>
         </div>
 
         {/* Profile Image */}
