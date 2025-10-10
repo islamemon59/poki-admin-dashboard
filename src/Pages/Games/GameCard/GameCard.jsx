@@ -4,13 +4,10 @@ import DeleteButton from "../DeleteButton/DeleteButton";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const GameCard = ({ game, refetch }) => {
   const [hovered, setHovered] = useState(false);
-
-  const handleUpdate = (id) => {
-    console.log("Update game:", id);
-  };
 
   const handleDelete = async (id) => {
     console.log("Delete game:", id);
@@ -65,13 +62,12 @@ const GameCard = ({ game, refetch }) => {
 
         {/* Admin Buttons */}
         <div className="flex items-center gap-4 mb-4">
-          <button
-            onClick={() => handleUpdate(game._id)}
+          <Link to={`/update/${game?._id}`}
             className="bg-blue-500 hover:bg-blue-600 p-2 rounded-full transition"
             title="Update"
           >
             <FaEdit className="text-white" />
-          </button>
+          </Link>
           <DeleteButton
             onDelete={handleDelete}
             id={game?._id}

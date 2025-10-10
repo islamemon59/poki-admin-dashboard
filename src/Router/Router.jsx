@@ -8,6 +8,7 @@ import ForbiddenPage from "../Components/Forbidden/Forbidden";
 import AdminRoute from "../Private/AdminRoute";
 import UpdateProfile from "../Components/UpdateProfile/UpdateProfile";
 import Games from "../Pages/Games/Games";
+import UpdateForm from "../Pages/Games/UpdateForm/UpdateForm";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <Games/>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <AdminRoute>
+            <UpdateForm/>
           </AdminRoute>
         ),
       },
