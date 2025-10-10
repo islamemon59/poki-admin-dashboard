@@ -7,6 +7,7 @@ import Register from "../Pages/Register/Register";
 import ForbiddenPage from "../Components/Forbidden/Forbidden";
 import AdminRoute from "../Private/AdminRoute";
 import UpdateProfile from "../Components/UpdateProfile/UpdateProfile";
+import Games from "../Pages/Games/Games";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <DashboardHome></DashboardHome>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/games",
+        element: (
+          <AdminRoute>
+            <Games/>
           </AdminRoute>
         ),
       },
