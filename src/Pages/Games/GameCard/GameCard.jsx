@@ -1,15 +1,42 @@
 import React, { useState } from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import DeleteButton from "../DeleteButton/DeleteButton";
+import axios from "axios";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
-const GameCard = ({ game }) => {
+const GameCard = ({ game, refetch }) => {
   const [hovered, setHovered] = useState(false);
 
   const handleUpdate = (id) => {
     console.log("Update game:", id);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     console.log("Delete game:", id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "This game will be permanently deleted!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.delete(`http://localhost:5000/games/${id}`);
+          console.log(res);
+          if (res.status == 200) {
+            toast.success("Game has been deleted.");
+            refetch();
+          }
+        } catch (err) {
+          console.log(err);
+          toast.error("Failed to delete the game.");
+        }
+      }
+    });
   };
 
   return (
@@ -29,12 +56,12 @@ const GameCard = ({ game }) => {
       <div
         className={`absolute inset-0 bg-black/60 flex flex-col items-center justify-end gap-3 text-white 
         transform transition-all duration-500 ease-out
-        ${hovered ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
+        ${
+          hovered ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+        }`}
       >
         {/* Game Title */}
-        <h3 className="text-center text-sm font-semibold mb-2">
-          {game.title}
-        </h3>
+        <h3 className="text-center text-sm font-semibold mb-2">{game.title}</h3>
 
         {/* Admin Buttons */}
         <div className="flex items-center gap-4 mb-4">
@@ -45,13 +72,10 @@ const GameCard = ({ game }) => {
           >
             <FaEdit className="text-white" />
           </button>
-          <button
-            onClick={() => handleDelete(game._id)}
-            className="bg-red-500 hover:bg-red-600 p-2 rounded-full transition"
-            title="Delete"
-          >
-            <FaTrashAlt className="text-white" />
-          </button>
+          <DeleteButton
+            onDelete={handleDelete}
+            id={game?._id}
+          />
         </div>
       </div>
     </div>
