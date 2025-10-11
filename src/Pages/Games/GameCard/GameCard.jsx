@@ -37,7 +37,8 @@ const GameCard = ({ game, refetch }) => {
   };
 
   return (
-    <div
+    <Link
+    to={`/games/${game?._id}`}
       className="relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -74,7 +75,7 @@ const GameCard = ({ game, refetch }) => {
           />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

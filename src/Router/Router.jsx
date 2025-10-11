@@ -10,6 +10,7 @@ import UpdateProfile from "../Components/UpdateProfile/UpdateProfile";
 import Games from "../Pages/Games/Games";
 import UpdateForm from "../Pages/Games/UpdateForm/UpdateForm";
 import AddGames from "../Pages/AddGames/AddGames";
+import GameDetails from "../Pages/Games/GameDetails/GameDetails";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <Games />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/games/:id",
+        element: (
+          <AdminRoute>
+            <GameDetails/>
           </AdminRoute>
         ),
       },
