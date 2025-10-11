@@ -9,6 +9,7 @@ import AdminRoute from "../Private/AdminRoute";
 import UpdateProfile from "../Components/UpdateProfile/UpdateProfile";
 import Games from "../Pages/Games/Games";
 import UpdateForm from "../Pages/Games/UpdateForm/UpdateForm";
+import AddGames from "../Pages/AddGames/AddGames";
 
 export const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
         path: "/games",
         element: (
           <AdminRoute>
-            <Games/>
+            <Games />
           </AdminRoute>
         ),
       },
@@ -39,14 +40,22 @@ export const router = createBrowserRouter([
         path: "/update/:id",
         element: (
           <AdminRoute>
-            <UpdateForm/>
+            <UpdateForm />
           </AdminRoute>
         ),
       },
-        {
-    path: "/updateProfile",
-    Component: UpdateProfile,
-  },
+      {
+        path: "/addGames",
+        element: (
+          <AdminRoute>
+            <AddGames/>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/updateProfile",
+        Component: UpdateProfile,
+      },
       {
         path: "/profile",
         Component: AdminProfile,
@@ -65,5 +74,4 @@ export const router = createBrowserRouter([
     path: "/forbidden",
     Component: ForbiddenPage,
   },
-
 ]);
