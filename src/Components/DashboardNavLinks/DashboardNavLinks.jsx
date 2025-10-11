@@ -34,13 +34,6 @@ const DashboardNavLinks = () => {
         </div>
       </NavLink>
 
-        <NavLink to="/updateGames" className={linkClasses}>
-          <MdSystemUpdateAlt className="text-xl" />
-          <div className="flex flex-1 flex-col text-xl font-semibold overflow-hidden truncate">
-            Update Games
-          </div>
-        </NavLink>
-
         <NavLink to="/profile" className={linkClasses}>
           <FaUserShield className="text-xl" />
           <div className="flex flex-1 flex-col text-xl font-semibold overflow-hidden truncate">
