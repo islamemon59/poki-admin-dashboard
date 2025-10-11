@@ -1,38 +1,11 @@
-import { FaGamepad, FaUsers, FaUserShield, FaChartLine } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
+import Loader from "../Shared/Loader/Loader";
+import useDashboardData from "../Hooks/useDashboardData";
 
 export default function AdminDashboardHome() {
-  const stats = [
-    {
-      title: "Total Games",
-      value: 120,
-      icon: <FaGamepad className="text-4xl text-blue-600" />,
-      bg: "bg-blue-100",
-      iconBg: "bg-blue-200",
-    },
-    {
-      title: "Active Users",
-      value: 58,
-      icon: <FaUsers className="text-4xl text-emerald-600" />,
-      bg: "bg-emerald-100",
-      iconBg: "bg-emerald-200",
-    },
-    {
-      title: "Admin Profile",
-      value: "Emon Hossain",
-      icon: <FaUserShield className="text-4xl text-indigo-600" />,
-      bg: "bg-indigo-100",
-      iconBg: "bg-indigo-200",
-    },
-    // Added a new stat for a more balanced grid layout
-    {
-      title: "Monthly Revenue",
-      value: "$15.5K",
-      icon: <FaChartLine className="text-4xl text-amber-600" />,
-      bg: "bg-amber-100",
-      iconBg: "bg-amber-200",
-    },
-  ];
+const {stats, isLoading} = useDashboardData()
+
+if(isLoading) return <Loader/>
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-10">
@@ -46,7 +19,7 @@ export default function AdminDashboardHome() {
 
       {/* Stats Cards - Modernized */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
+        {stats?.map((stat, index) => (
           <div
             key={index}
             // Modern Card Style: Rounded borders, strong shadow, hover effect
