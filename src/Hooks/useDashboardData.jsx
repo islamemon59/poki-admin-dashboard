@@ -3,7 +3,7 @@ import axios from "axios";
 import React from "react";
 import { FaGamepad, FaUsers, FaUserShield, FaChartLine } from "react-icons/fa";
 const useDashboardData = () => {
-  const { data: totalGames = 0, isLoading: isGamesLoading } = useQuery({
+  const { data: totalGames = 0, isLoading: isGamesLoading, refetch: refetchGames } = useQuery({
     queryKey: ["totalGames"],
     queryFn: async () => {
       const { data } = await axios.get("http://localhost:5000/total-games");
@@ -12,7 +12,7 @@ const useDashboardData = () => {
     },
   });
 
-  const { data: totalUsers = 0, isLoading: isUsersLoading } = useQuery({
+  const { data: totalUsers = 0, isLoading: isUsersLoading, refetch: refetchUsers } = useQuery({
     queryKey: ["totalUsers"],
     queryFn: async () => {
       const { data } = await axios.get("http://localhost:5000/total-users");
@@ -22,6 +22,10 @@ const useDashboardData = () => {
   });
 
   const isLoading = isGamesLoading || isUsersLoading;
+    // ✅ Combined refetch function
+  const refetchAll = async () => {
+    await Promise.all([refetchGames(), refetchUsers()]);
+  };
 
   const stats = [
     {
@@ -54,7 +58,7 @@ const useDashboardData = () => {
       iconBg: "bg-amber-200",
     },
   ];
-  return { stats, isLoading };
+  return { stats, isLoading, refetchAll };
 };
 
 export default useDashboardData;

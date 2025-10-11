@@ -3,9 +3,11 @@ import Loader from "../Shared/Loader/Loader";
 import useDashboardData from "../Hooks/useDashboardData";
 
 export default function AdminDashboardHome() {
-const {stats, isLoading} = useDashboardData()
+const {stats, isLoading, refetchAll} = useDashboardData()
 
 if(isLoading) return <Loader/>
+
+refetchAll()
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-10">
