@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router";
 import Loader from "../../../Shared/Loader/Loader";
 
 const GameDetails = () => {
   const { id } = useParams();
+  const [hovered, setHovered] = useState(null);
   console.log(id);
   const { data: games } = useQuery({
     queryKey: ["data"],
@@ -70,16 +71,21 @@ const GameDetails = () => {
           <Link
             key={g?._id}
             to={`/games/${g?._id}`}
-            className="rounded-xl overflow-hidden shadow-md"
+            className="rounded-xl overflow-hidden shadow-md relative group"
+            onMouseEnter={() => setHovered(g?._id)}
+            onMouseLeave={() => setHovered(null)}
           >
             <img
               src={g?.thumbnail}
               alt={g?.title}
               className="w-full h-32 object-cover"
             />
-            <p className="text-center text-sm p-1 bg-black text-white">
+            <div
+              className={`absolute text-sm bottom-1 left-0 w-full font-bold bg-opacity-60 p-2 text-white text-center transform transition-transform duration-500
+          ${hovered === g?._id ? "translate-y-0" : "translate-y-full"}`}
+            >
               {g?.title}
-            </p>
+            </div>
           </Link>
         ))}
       </div>
