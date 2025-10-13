@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaInfoCircle, FaTrashAlt } from "react-icons/fa";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -37,8 +37,8 @@ const GameCard = ({ game, refetch }) => {
   };
 
   return (
-    <Link
-    to={`/games/${game?._id}`}
+    <div
+      onClick={(e) => e.stopPropagation()}
       className="relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -63,19 +63,25 @@ const GameCard = ({ game, refetch }) => {
 
         {/* Admin Buttons */}
         <div className="flex items-center gap-4 mb-4">
-          <Link to={`/update/${game?._id}`}
+          <Link
+            to={`/games/${game?._id}`}
+            className="bg-green-500 hover:bg-green-600 p-2 rounded-full transition"
+            title="View Details"
+          >
+            <FaInfoCircle className="text-white" />
+          </Link>
+          <Link
+            to={`/update/${game?._id}`}
             className="bg-blue-500 hover:bg-blue-600 p-2 rounded-full transition"
             title="Update"
           >
             <FaEdit className="text-white" />
           </Link>
-          <DeleteButton
-            onDelete={handleDelete}
-            id={game?._id}
-          />
+
+          <DeleteButton onDelete={handleDelete} id={game?._id} />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
