@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import { FiHome } from "react-icons/fi";
-import { FaGamepad, FaUserShield } from "react-icons/fa";
+import { FaBullhorn, FaClipboardList, FaGamepad, FaUserShield } from "react-icons/fa";
 import { MdOutlineGames, MdSystemUpdateAlt } from "react-icons/md";
 
 const DashboardNavLinks = () => {
@@ -25,12 +25,25 @@ const DashboardNavLinks = () => {
           Games
         </div>
       </NavLink>
+      <NavLink to="/ads" className={linkClasses}>
+        <FaClipboardList className="text-2xl text-white" />
+        <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold overflow-hidden truncate">
+          All Ads
+        </div>
+      </NavLink>
 
       {/* Add Games */}
       <NavLink to="/addGames" className={linkClasses}>
         <FaGamepad className="text-2xl text-white" />
         <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold overflow-hidden truncate">
           Add Games
+        </div>
+      </NavLink>
+      {/* Add Ads */}
+      <NavLink to="/addAds" className={linkClasses}>
+        <FaBullhorn className="text-2xl text-white" />
+        <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold overflow-hidden truncate">
+          Run Ads
         </div>
       </NavLink>
 

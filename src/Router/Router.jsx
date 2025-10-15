@@ -11,6 +11,9 @@ import Games from "../Pages/Games/Games";
 import UpdateForm from "../Pages/Games/UpdateForm/UpdateForm";
 import AddGames from "../Pages/AddGames/AddGames";
 import GameDetails from "../Pages/Games/GameDetails/GameDetails";
+import AddAdForm from "../Pages/AddAdForm/AddAdForm";
+import AllAds from "../Pages/AllAds/AllAds";
+import EditAd from "../Pages/EditAd/EditAd";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +61,30 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AddGames/>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/addAds",
+        element: (
+          <AdminRoute>
+            <AddAdForm/>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/ads",
+        element: (
+          <AdminRoute>
+            <AllAds/>
+          </AdminRoute>
+        ),
+      },
+            {
+        path: "/edit/:id",
+        element: (
+          <AdminRoute>
+            <EditAd/>
           </AdminRoute>
         ),
       },
