@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useParams } from "react-router";
 import Loader from "../../../Shared/Loader/Loader";
+import useDynamicTitle from "../../../Hooks/useDynamicTitle";
 
 const GameDetails = () => {
   const { id } = useParams();
@@ -22,6 +23,8 @@ const GameDetails = () => {
       return data;
     },
   });
+
+  useDynamicTitle(game?.title);
   const otherGames = games?.filter((g) => g?._id != id);
   console.log(game);
 

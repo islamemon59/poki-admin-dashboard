@@ -1,8 +1,10 @@
 import { MdLeaderboard } from "react-icons/md";
 import Loader from "../Shared/Loader/Loader";
 import useDashboardData from "../Hooks/useDashboardData";
+import useDynamicTitle from "../Hooks/useDynamicTitle";
 
 export default function AdminDashboardHome() {
+  useDynamicTitle("Home");
 const {stats, isLoading, refetchAll} = useDashboardData()
 
 if(isLoading) return <Loader/>

@@ -4,8 +4,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
 import Loader from "../../Shared/Loader/Loader";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const AllAds = () => {
+  useDynamicTitle("All Ads");
   const queryClient = useQueryClient();
 
   // Fetch all ads

@@ -3,8 +3,10 @@ import axios from "axios";
 import React from "react";
 import Loader from "../../Shared/Loader/Loader";
 import GameCard from "./GameCard/GameCard";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const Games = () => {
+  useDynamicTitle("Games");
   const {
     data: games,
     isLoading,

@@ -4,8 +4,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { uploadImage } from "../../Api/imageUploadApi";
 import useCategories from "../../Hooks/useCategories";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const AddGames = () => {
+  useDynamicTitle("Add Games");
   const [previewUrl, setPreviewUrl] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const {allCategories} = useCategories();

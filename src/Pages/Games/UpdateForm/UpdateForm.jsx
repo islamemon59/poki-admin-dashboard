@@ -7,8 +7,10 @@ import Swal from "sweetalert2";
 import Loader from "../../../Shared/Loader/Loader";
 import { uploadImage } from "../../../Api/imageUploadApi";
 import toast from "react-hot-toast";
+import useDynamicTitle from "../../../Hooks/useDynamicTitle";
 
 const UpdateForm = () => {
+  useDynamicTitle("Update Games");
   const { id } = useParams();
   const navigate = useNavigate();
   const [previewUrl, setPreviewUrl] = useState("");

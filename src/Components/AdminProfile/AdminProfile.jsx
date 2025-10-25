@@ -6,8 +6,10 @@ import {
 } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 export default function AdminProfile() {
+  useDynamicTitle("Profile");
   const {user} = useAuth()
   const adminData = {
     name: `${user?.displayName}`,

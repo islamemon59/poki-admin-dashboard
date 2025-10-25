@@ -5,10 +5,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { uploadImage } from "../../Api/imageUploadApi";
 import Loader from "../../Shared/Loader/Loader";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const positions = ["left", "right", "bottom"];
 
 const EditAd = () => {
+  useDynamicTitle("Update Ads");
     const [loading, setLoading] = useState(false)
   const { id } = useParams();
   const navigate = useNavigate();

@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { uploadImage } from "../../Api/imageUploadApi"; // your custom image upload API
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 const AddAdForm = () => {
+  useDynamicTitle("Run Ads");
   const { register, handleSubmit, reset } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);

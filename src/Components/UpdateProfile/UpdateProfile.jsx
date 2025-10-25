@@ -4,8 +4,10 @@ import toast from "react-hot-toast";
 import { uploadImage } from "../../Api/imageUploadApi";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router";
+import useDynamicTitle from "../../Hooks/useDynamicTitle";
 
 export default function UpdateProfile() {
+  useDynamicTitle("Update Profile");
   const { updateUserProfile } = useAuth();
   const navigate = useNavigate()
 

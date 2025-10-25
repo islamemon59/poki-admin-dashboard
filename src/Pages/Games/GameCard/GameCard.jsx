@@ -35,6 +35,7 @@ const GameCard = ({ game, refetch }) => {
       }
     });
   };
+  
 
   return (
     <div
