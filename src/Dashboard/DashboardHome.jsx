@@ -44,19 +44,6 @@ refetchAll()
         ))}
       </div>
       {/* --- */}
-
-      {/* Extra Section - Modernized Panel */}
-      <div className="mt-10 p-8 rounded-3xl bg-white shadow-2xl border border-gray-100 text-center">
-        <MdLeaderboard className="text-7xl text-sky-500 mx-auto mb-4" />
-        <h3 className="text-3xl font-bold text-gray-900 mb-2">
-          Platform Performance Insights
-        </h3>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Deep dive into **real-time metrics** to track game uploads, user
-          engagement, and overall system performance. Use the sidebar for
-          detailed analytics reports.
-        </p>
-      </div>
     </div>
   );
 }

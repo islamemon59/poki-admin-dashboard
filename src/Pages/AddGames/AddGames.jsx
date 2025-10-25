@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { uploadImage } from "../../Api/imageUploadApi";
-import Loader from "../../Shared/Loader/Loader";
+import useCategories from "../../Hooks/useCategories";
 
 const AddGames = () => {
-  const navigate = useNavigate();
   const [previewUrl, setPreviewUrl] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const {allCategories} = useCategories();
 
   const {
     register,
@@ -27,16 +26,11 @@ const AddGames = () => {
         thumbnailUrl = uploaded;
       }
 
-      // Convert rating to number
-      const rating = parseFloat(formData.rating) || 0;
-
       const newGame = {
         title: formData.title,
         category: formData.category,
         gameUrl: formData.gameUrl,
-        previewVideo: formData.previewVideo,
         thumbnail: thumbnailUrl,
-        rating,
         description: formData.description,
       };
 
@@ -54,7 +48,6 @@ const AddGames = () => {
         reset();
         setPreviewUrl("");
         setSelectedFile(null);
-        navigate("/games");
       } else {
         Swal.fire("Error!", "Failed to add game!", "error");
       }
@@ -84,15 +77,25 @@ const AddGames = () => {
           />
         </div>
 
-        {/* Category */}
-        <div className="flex flex-col">
-          <label className="font-semibold mb-1">Category</label>
-          <input
-            {...register("category", { required: true })}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
-            placeholder="Shooting, Soccer, Racing..."
-          />
-        </div>
+{/* Category */}
+<div className="flex flex-col">
+  <label className="font-semibold mb-1">Category</label>
+  <select
+    {...register("category", { required: true })}
+    className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+    defaultValue=""
+  >
+    <option value="" disabled>
+      Select a category
+    </option>
+    {allCategories?.map((cat, index) => (
+      <option key={index} value={cat}>
+        {cat}
+      </option>
+    ))}
+  </select>
+</div>
+
 
         {/* Game URL */}
         <div className="flex flex-col">
@@ -104,15 +107,6 @@ const AddGames = () => {
           />
         </div>
 
-        {/* Preview Video */}
-        <div className="flex flex-col">
-          <label className="font-semibold mb-1">Preview Video</label>
-          <input
-            {...register("previewVideo")}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
-            placeholder="https://..."
-          />
-        </div>
 
         {/* File Upload */}
         <div className="flex flex-col md:col-span-1">
@@ -151,17 +145,6 @@ const AddGames = () => {
           )}
         </div>
 
-        {/* Rating */}
-        <div className="flex flex-col">
-          <label className="font-semibold mb-1">Rating</label>
-          <input
-            type="number"
-            step="0.1"
-            {...register("rating")}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
-            placeholder="e.g. 4.5"
-          />
-        </div>
 
         {/* Description */}
         <div className="flex flex-col md:col-span-2">
