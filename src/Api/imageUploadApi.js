@@ -1,10 +1,16 @@
 import axios from "axios";
 
-export const uploadImage = async (imageData) => {
+export const uploadImage = async (imageFile) => {
   const formData = new FormData();
-  formData.append("image", imageData);
+  // Change "image" to "images" to match upload.array("images") on the server
+  formData.append("images", imageFile); 
 
-  const { data } = await axios.post(
-    `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_API_KEY}`, formData);
-    return data?.data?.display_url;
+  const { data } = await axios.post("http://localhost:5000/upload", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  console.log("url",data);
+
+  // You also need to fix what you return/access, see *Note 1* below
+  return data.urls[0]; // Assuming you only upload one image here
 };

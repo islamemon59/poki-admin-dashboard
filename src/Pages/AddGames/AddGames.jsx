@@ -10,7 +10,7 @@ const AddGames = () => {
   useDynamicTitle("Add Games");
   const [previewUrl, setPreviewUrl] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
-  const {allCategories} = useCategories();
+  const { allCategories } = useCategories();
 
   const {
     register,
@@ -79,25 +79,24 @@ const AddGames = () => {
           />
         </div>
 
-{/* Category */}
-<div className="flex flex-col">
-  <label className="font-semibold mb-1">Category</label>
-  <select
-    {...register("category", { required: true })}
-    className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
-    defaultValue=""
-  >
-    <option value="" disabled>
-      Select a category
-    </option>
-    {allCategories?.map((cat, index) => (
-      <option key={index} value={cat}>
-        {cat}
-      </option>
-    ))}
-  </select>
-</div>
-
+        {/* Category */}
+        <div className="flex flex-col">
+          <label className="font-semibold mb-1">Category</label>
+          <select
+            {...register("category", { required: true })}
+            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select a category
+            </option>
+            {allCategories?.map((cat, index) => (
+              <option key={index} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Game URL */}
         <div className="flex flex-col">
@@ -108,7 +107,6 @@ const AddGames = () => {
             placeholder="https://..."
           />
         </div>
-
 
         {/* File Upload */}
         <div className="flex flex-col md:col-span-1">
@@ -146,7 +144,6 @@ const AddGames = () => {
             />
           )}
         </div>
-
 
         {/* Description */}
         <div className="flex flex-col md:col-span-2">
