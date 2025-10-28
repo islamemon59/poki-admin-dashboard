@@ -1,2 +1,51 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/*
+ * 🚨 CRITICAL CSS FIX 🚨
+ * COPY AND PASTE THIS ENTIRE BLOCK INTO YOUR PROJECT'S GLOBAL CSS FILE.
+ * (e.g., index.css or global.css)
+ */
+
+.editor-input {
+    /* Base configuration for the editable area */
+    line-height: 1.5 !important;
+    min-height: 150px !important;
+    color: black !important; /* Ensure text is visible */
+    font-size: 16px !important; /* Base font size */
+    font-family: Arial, sans-serif !important; /* Base font family */
+}
+
+/* Fixes List Controls */
+.editor-input ul,
+.editor-input ol {
+    margin: 10px 0 10px 0 !important;
+    padding-left: 30px !important;
+}
+
+.editor-input ul {
+    list-style-type: disc !important;
+}
+
+.editor-input ol {
+    list-style-type: decimal !important;
+}
+
+/* Fixes Alignment Controls */
+.editor-input .text-left {
+    text-align: left !important;
+}
+.editor-input .text-center {
+    text-align: center !important;
+}
+.editor-input .text-right {
+    text-align: right !important;
+}
+
+/* Fixes Heading Control (H2) */
+.editor-input h2 {
+    font-size: 1.5em !important; 
+    font-weight: 600 !important; 
+    margin-top: 1em !important;
+    margin-bottom: 0.5em !important;
+}

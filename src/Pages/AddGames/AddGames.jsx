@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { uploadImage } from "../../Api/imageUploadApi";
 import useCategories from "../../Hooks/useCategories";
 import useDynamicTitle from "../../Hooks/useDynamicTitle";
+import GameDescriptionEditor from "./GameDescriptionEditor";
 
 const AddGames = () => {
   useDynamicTitle("Add Games");
@@ -15,6 +17,7 @@ const AddGames = () => {
   const {
     register,
     handleSubmit,
+    control,
     reset,
     formState: { isSubmitting },
   } = useForm();
@@ -34,6 +37,8 @@ const AddGames = () => {
         gameUrl: formData.gameUrl,
         thumbnail: thumbnailUrl,
         description: formData.description,
+        metaDescription: formData.metaDescription,
+        metaKeywords: formData.metaKeywords,
       };
 
       console.log("Adding game:", newGame);
@@ -148,12 +153,57 @@ const AddGames = () => {
         {/* Description */}
         <div className="flex flex-col md:col-span-2">
           <label className="font-semibold mb-1">Description</label>
+
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <GameDescriptionEditor
+                // Lexical deals with its own state, so you only pass the onChange handler
+                onChange={field.onChange}
+                // value={field.value} // Lexical manages its own internal state via the config
+              />
+            )}
+          />
+
+          {/* ⚠️ NOTE: This Lexical setup requires you to use the @lexical/html package 
+     to convert the editor's internal state into an HTML string that your 
+     `dangerouslySetInnerHTML` display code expects. */}
+        </div>
+
+        {/* === SEO Meta Fields === */}
+        <hr className="my-4 border-gray-300 md:col-span-2" />
+        <h3 className="text-xl font-semibold text-[#144D75] md:col-span-2">
+          🧩 SEO Meta Info
+        </h3>
+
+        {/* Meta Description */}
+        <div className="flex flex-col md:col-span-2 mt-2">
+          <label className="font-semibold mb-1">Meta Description</label>
           <textarea
-            {...register("description")}
-            rows="4"
+            {...register("metaDescription")}
+            rows="2"
+            maxLength={160}
             className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none resize-none"
-            placeholder="Write a short description about the game..."
+            placeholder="Enter short SEO-friendly description (max 160 chars)"
           ></textarea>
+          <p className="text-xs text-gray-400 mt-1">
+            This will appear as the game's description in Google search results.
+          </p>
+        </div>
+
+        {/* Meta Keywords */}
+        <div className="flex flex-col md:col-span-2 mt-2">
+          <label className="font-semibold mb-1">Meta Keywords</label>
+          <input
+            {...register("metaKeywords")}
+            type="text"
+            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            placeholder="e.g. car games, racing, multiplayer"
+          />
+          <p className="text-xs text-gray-400 mt-1">
+            Comma-separated keywords to help SEO (optional).
+          </p>
         </div>
 
         {/* Submit Button */}
