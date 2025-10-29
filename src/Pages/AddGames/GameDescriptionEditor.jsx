@@ -23,7 +23,7 @@ import {
 } from "lexical";
 import { $generateHtmlFromNodes } from "@lexical/html";
 import { $setBlocksType } from "@lexical/selection";
-import { mergeRegister, $getNearestNodeOfType } from "@lexical/utils"; 
+import { mergeRegister, $getNearestNodeOfType } from "@lexical/utils";
 
 // --- Node Imports ---
 import {
@@ -73,12 +73,12 @@ const BLOCK_TYPE_OPTIONS = {
 
 // --- Styles ---
 const editorStyle = {
-  minHeight: "200px", 
-  padding: "15px", 
-  borderRadius: "0 0 6px 6px", 
+  minHeight: "200px",
+  padding: "15px",
+  borderRadius: "0 0 6px 6px",
   backgroundColor: "white",
   textAlign: "left",
-  fontSize: "16px", 
+  fontSize: "16px",
 };
 
 // --- Custom YouTube Embed Node ---
@@ -200,12 +200,13 @@ const initialConfig = {
       h2: "text-3xl font-bold mb-3 mt-5",
       h3: "text-2xl font-semibold mb-2 mt-4",
     },
-    quote: "border-l-4 border-blue-500 pl-4 py-2 italic text-gray-700 bg-blue-50/50", // Added subtle background
+    quote:
+      "border-l-4 border-blue-500 pl-4 py-2 italic text-gray-700 bg-blue-50/50", // Added subtle background
     list: {
-      ul: "list-disc ml-8 my-2", 
+      ul: "list-disc ml-8 my-2",
       ol: "list-decimal ml-8 my-2",
     },
-    link: "text-blue-600 hover:text-blue-800 underline transition-colors", 
+    link: "text-blue-600 hover:text-blue-800 underline transition-colors",
     youtube: "flex justify-center my-6 p-2 rounded-lg bg-gray-50",
   },
   onError: (error) => {
@@ -262,17 +263,17 @@ const ToolbarPlugin = () => {
       const parent = node.getParent();
       setIsLink($isLinkNode(parent) || $isLinkNode(node));
 
-      const anchorNode = selection.anchor.getNode(); 
+      const anchorNode = selection.anchor.getNode();
       let element = anchorNode.getTopLevelElementOrThrow();
 
-      // Fix for List Type: Check if the top-level element is a list node
+      // Check if the top-level element is a list node
       if ($isListNode(element)) {
         // Find the nearest list item (parent of the anchor node)
         const nearestList = $getNearestNodeOfType(anchorNode, ListNode);
         if (nearestList) {
           setBlockType(nearestList.getListType()); // 'ul' or 'ol'
         }
-      } 
+      }
       // Handle other block types
       else if ($isHeadingNode(element)) {
         setBlockType(element.getTag());
@@ -282,7 +283,7 @@ const ToolbarPlugin = () => {
         setBlockType("paragraph");
       }
     }
-  }, []); 
+  }, []);
 
   // Register listeners
   useEffect(() => {
@@ -311,18 +312,31 @@ const ToolbarPlugin = () => {
     editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, alignment);
   };
 
-  // FIX: List commands are now guaranteed to work correctly
+  /**
+   * FIX: Conditional list removal logic implemented. 
+   * It only dispatches REMOVE_LIST_COMMAND if the current block is a list 
+   * and we are changing it to a non-list block type (heading, quote, paragraph).
+   */
   const formatBlock = (type) => {
     if (type === "ul" || type === "ol") {
       const command =
-        type === "ul" ? INSERT_UNORDERED_LIST_COMMAND : INSERT_ORDERED_LIST_COMMAND;
+        type === "ul"
+          ? INSERT_UNORDERED_LIST_COMMAND
+          : INSERT_ORDERED_LIST_COMMAND;
       editor.dispatchCommand(command, undefined);
     } else {
-      // Must remove list before setting block type to prevent nested errors
-      editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined); 
       editor.update(() => {
         const selection = $getSelection();
         if ($isRangeSelection(selection)) {
+          // Check if the current block is a list. If so, remove the list.
+          const anchorNode = selection.anchor.getNode();
+          const nearestList = $getNearestNodeOfType(anchorNode, ListNode);
+
+          if (nearestList) {
+            editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
+          }
+
+          // Then, set the blocks type to the new block type.
           $setBlocksType(selection, () => {
             if (type.startsWith("h")) return $createHeadingNode(type);
             if (type === "quote") return $createQuoteNode();
@@ -332,6 +346,7 @@ const ToolbarPlugin = () => {
       });
     }
   };
+  // --- END FIX ---
 
   const applyStyleText = (style, value) => {
     editor.update(() => {
@@ -394,13 +409,13 @@ const ToolbarPlugin = () => {
   };
 
   // Improved active class and button base style
-  const activeClass = "bg-blue-500 text-white shadow-md"; 
-  const defaultClass = "h-8 w-8 text-xl rounded transition-all duration-150 hover:bg-blue-100 hover:text-blue-700 text-gray-700";
+  const activeClass = "bg-blue-500 text-white shadow-md";
+  const defaultClass =
+    "h-8 w-8 text-xl rounded transition-all duration-150 hover:bg-blue-100 hover:text-blue-700 text-gray-700";
   const linkActiveClass = "bg-green-100 text-green-700 hover:bg-green-200";
 
   return (
     <div className="toolbar p-2 border-x border-t border-gray-300 bg-white rounded-t-md flex flex-wrap gap-2 items-center shadow-inner">
-      
       {/* 1. Block/Font Selection Group */}
       <div className="flex gap-2">
         <select
@@ -449,7 +464,9 @@ const ToolbarPlugin = () => {
       <div className="flex gap-1">
         <button
           onClick={() => formatText("bold")}
-          className={`${defaultClass} text-lg font-bold ${isBold ? activeClass : ""}`}
+          className={`${defaultClass} text-lg font-bold ${
+            isBold ? activeClass : ""
+          }`}
           type="button"
           title="Bold (Ctrl+B)"
         >
@@ -457,7 +474,9 @@ const ToolbarPlugin = () => {
         </button>
         <button
           onClick={() => formatText("italic")}
-          className={`${defaultClass} text-lg italic ${isItalic ? activeClass : ""}`}
+          className={`${defaultClass} text-lg italic ${
+            isItalic ? activeClass : ""
+          }`}
           type="button"
           title="Italic (Ctrl+I)"
         >
@@ -465,7 +484,9 @@ const ToolbarPlugin = () => {
         </button>
         <button
           onClick={() => formatText("underline")}
-          className={`${defaultClass} text-lg underline ${isUnderline ? activeClass : ""}`}
+          className={`${defaultClass} text-lg underline ${
+            isUnderline ? activeClass : ""
+          }`}
           type="button"
           title="Underline (Ctrl+U)"
         >
@@ -478,7 +499,7 @@ const ToolbarPlugin = () => {
           type="button"
           title="Strikethrough"
         >
-          <span className="text-xl">&#xe11a;</span> 
+          <span className="text-xl">&#xe11a;</span>
         </button>
         <button
           onClick={() => formatText("code")}
@@ -491,7 +512,7 @@ const ToolbarPlugin = () => {
       </div>
 
       <div className="border-l border-gray-300 h-6 self-center mx-1"></div>
-      
+
       {/* 3. Alignment Controls Group */}
       <div className="flex gap-1">
         <button
@@ -500,7 +521,7 @@ const ToolbarPlugin = () => {
           type="button"
           title="Align Left"
         >
-          <span className="text-xl">L</span> 
+          <span className="text-xl">L</span>
         </button>
         <button
           onClick={() => setAlignment("center")}
@@ -516,20 +537,20 @@ const ToolbarPlugin = () => {
           type="button"
           title="Align Right"
         >
-          <span className="text-xl">R</span> 
+          <span className="text-xl">R</span>
         </button>
       </div>
 
       <div className="border-l border-gray-300 h-6 self-center mx-1"></div>
-      
+
       {/* 4. Link and Embed Controls Group */}
       <div className="flex gap-1">
         <button
           onClick={() => insertLink(false)}
           className={`px-3 py-1 rounded text-sm transition-colors ${
-            isLink 
-              ? linkActiveClass 
-              : 'bg-white text-gray-700 hover:bg-gray-100'
+            isLink
+              ? linkActiveClass
+              : "bg-white text-gray-700 hover:bg-gray-100"
           } border border-gray-300 shadow-sm`}
           type="button"
           title={isLink ? "Unlink" : "Insert Standard (DoFollow) Link"}
@@ -595,8 +616,8 @@ function GameDescriptionEditor({ onChange }) {
         <RichTextPlugin
           contentEditable={
             <ContentEditable
-              className="editor-input outline-none" 
-              style={editorStyle} 
+              className="editor-input outline-none"
+              style={editorStyle}
             />
           }
           placeholder={
@@ -604,9 +625,9 @@ function GameDescriptionEditor({ onChange }) {
               className="editor-placeholder"
               style={{
                 position: "absolute",
-                top: "15px", 
+                top: "15px",
                 left: "20px",
-                color: "#a0a0a0", 
+                color: "#a0a0a0",
                 pointerEvents: "none",
                 userSelect: "none",
               }}
