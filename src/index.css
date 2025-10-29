@@ -1,11 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-/*
- * 🚨 CRITICAL CSS FIX 🚨
- * COPY AND PASTE THIS ENTIRE BLOCK INTO YOUR PROJECT'S GLOBAL CSS FILE.
- * (e.g., index.css or global.css)
- */
 
 .editor-input {
     /* Base configuration for the editable area */
