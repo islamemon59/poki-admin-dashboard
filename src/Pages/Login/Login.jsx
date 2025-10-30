@@ -9,7 +9,7 @@ import GoogleButton from "../../Components/SocialLogin/GoogleLogin";
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isValue, setIsValue] = useState("");
-  const { signInUser } = useAuth();
+  const { signInUser, resetPassword } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -37,7 +37,37 @@ export default function Login() {
     }
   };
 
+  const handleResetPassword = async () => {
+    const { value: email } = await Swal.fire({
+      title: "Reset Password",
+      input: "email",
+      inputLabel: "Enter your registered email",
+      inputPlaceholder: "your@email.com",
+      confirmButtonText: "Send Reset Link",
+      showCancelButton: true,
+      cancelButtonColor: "#d33",
+      confirmButtonColor: "#2E7A7A",
+      background: "#f8f9fa",
+    });
 
+    if (email) {
+      try {
+        await resetPassword(email);
+        Swal.fire({
+          icon: "success",
+          title: "Password Reset Email Sent",
+          text: "Check your inbox and follow the instructions to reset your password.",
+          confirmButtonColor: "#2E7A7A",
+        });
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: error.message,
+        });
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#3489BD] via-[#65B0D5] to-[#2E7A7A] p-4">
@@ -92,9 +122,13 @@ export default function Login() {
 
           {/* Forgot Password */}
           <div className="text-right">
-            <a href="#" className="text-sm text-white hover:underline">
+            <button
+              type="button"
+              onClick={handleResetPassword}
+              className="text-sm text-white hover:underline"
+            >
               Forgot password?
-            </a>
+            </button>
           </div>
 
           {/* Submit Button */}
@@ -104,21 +138,7 @@ export default function Login() {
           >
             Login
           </button>
-
-          {/* Divider */}
-          <div className="divider text-white">OR</div>
-          {/* Register Link */}
-          <p className="text-center text-white/80 mt-4">
-            Don’t have an account?{" "}
-            <Link
-              to="/register"
-              className="text-white font-semibold hover:underline"
-            >
-              Sign up
-            </Link>
-          </p>
         </form>
-        <GoogleButton />
       </div>
     </div>
   );

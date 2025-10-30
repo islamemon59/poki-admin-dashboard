@@ -2,12 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { FaGamepad, FaUsers, FaUserShield, FaChartLine } from "react-icons/fa";
+import useAuth from "./useAuth";
 const useDashboardData = () => {
+  const {user} = useAuth();
   const { data: totalGames = 0, isLoading: isGamesLoading, refetch: refetchGames } = useQuery({
     queryKey: ["totalGames"],
     queryFn: async () => {
       const { data } = await axios.get("http://localhost:5000/total-games");
-      console.log("Games:", data);
       return data?.totalGames || 0;
     },
   });
@@ -16,7 +17,6 @@ const useDashboardData = () => {
     queryKey: ["totalUsers"],
     queryFn: async () => {
       const { data } = await axios.get("http://localhost:5000/total-users");
-      console.log("Users:", data);
       return data?.totalUsers || 0;
     },
   });
@@ -44,7 +44,7 @@ const useDashboardData = () => {
     },
     {
       title: "Admin Profile",
-      value: "Emon Hossain",
+      value: `${user?.displayName || "Admin"}`,
       icon: <FaUserShield className="text-4xl text-indigo-600" />,
       bg: "bg-indigo-100",
       iconBg: "bg-indigo-200",

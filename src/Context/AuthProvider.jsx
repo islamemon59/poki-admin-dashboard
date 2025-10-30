@@ -6,8 +6,12 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
   signOut,
   updateProfile,
+  sendPasswordResetEmail,
+  updatePassword,
 } from "firebase/auth";
 import { auth } from "../Firebase/Firebase.config";
 
@@ -44,6 +48,31 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  const resetPassword = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
+
+  const updateUserPassword = async (currentPassword, newPassword) => {
+    if (!auth.currentUser) throw new Error("No user is logged in.");
+    setLoading(true);
+    try {
+      // Step 1: Re-authenticate user
+      const credential = EmailAuthProvider.credential(
+        auth.currentUser.email,
+        currentPassword
+      );
+      await reauthenticateWithCredential(auth.currentUser, credential);
+
+      // Step 2: Update password
+      await updatePassword(auth.currentUser, newPassword);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      throw error;
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -67,6 +96,8 @@ const AuthProvider = ({ children }) => {
     createUser,
     signInWithGoogle,
     updateUserProfile,
+    resetPassword,
+    updateUserPassword,
   };
   return <AuthContext value={userInfo}>{children}</AuthContext>;
 };

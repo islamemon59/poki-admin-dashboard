@@ -103,10 +103,6 @@ export const router = createBrowserRouter([
     Component: Login,
   },
   {
-    path: "/register",
-    Component: Register,
-  },
-  {
     path: "/forbidden",
     Component: ForbiddenPage,
   },
