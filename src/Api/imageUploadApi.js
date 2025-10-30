@@ -5,7 +5,7 @@ export const uploadImage = async (imageFile) => {
   // Change "image" to "images" to match upload.array("images") on the server
   formData.append("images", imageFile); 
 
-  const { data } = await axios.post("http://localhost:5000/upload", formData, {
+  const { data } = await axios.post("https://server.innliv.com/upload", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
 

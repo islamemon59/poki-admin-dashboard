@@ -22,7 +22,7 @@ const GameCard = ({ game, refetch }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.delete(`http://localhost:5000/games/${id}`);
+          const res = await axios.delete(`https://server.innliv.com/games/${id}`);
           console.log(res);
           if (res.status == 200) {
             toast.success("Game has been deleted.");

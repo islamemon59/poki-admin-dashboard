@@ -44,7 +44,7 @@ const AddGames = () => {
       console.log("Adding game:", newGame);
 
       const { data: res } = await axios.post(
-        "http://localhost:5000/games",
+        "https://server.innliv.com/games",
         newGame
       );
 

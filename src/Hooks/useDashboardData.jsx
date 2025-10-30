@@ -8,7 +8,7 @@ const useDashboardData = () => {
   const { data: totalGames = 0, isLoading: isGamesLoading, refetch: refetchGames } = useQuery({
     queryKey: ["totalGames"],
     queryFn: async () => {
-      const { data } = await axios.get("http://localhost:5000/total-games");
+      const { data } = await axios.get("https://server.innliv.com/total-games");
       return data?.totalGames || 0;
     },
   });
@@ -16,7 +16,7 @@ const useDashboardData = () => {
   const { data: totalUsers = 0, isLoading: isUsersLoading, refetch: refetchUsers } = useQuery({
     queryKey: ["totalUsers"],
     queryFn: async () => {
-      const { data } = await axios.get("http://localhost:5000/total-users");
+      const { data } = await axios.get("https://server.innliv.com/total-users");
       return data?.totalUsers || 0;
     },
   });

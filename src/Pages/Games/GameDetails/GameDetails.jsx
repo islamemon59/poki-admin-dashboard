@@ -12,14 +12,14 @@ const GameDetails = () => {
   const { data: games } = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
-      const { data } = await axios.get("http://localhost:5000/games");
+      const { data } = await axios.get("https://server.innliv.com/games");
       return data;
     },
   });
   const { data: game, isLoading } = useQuery({
     queryKey: [id],
     queryFn: async () => {
-      const { data } = await axios.get(`http://localhost:5000/games/${id}`);
+      const { data } = await axios.get(`https://server.innliv.com/games/${id}`);
       return data;
     },
   });

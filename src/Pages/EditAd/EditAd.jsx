@@ -21,7 +21,7 @@ const EditAd = () => {
   const { data: ad, isLoading } = useQuery({
     queryKey: ["ad", id],
     queryFn: async () => {
-      const { data } = await axios.get(`http://localhost:5000/ads/${id}`);
+      const { data } = await axios.get(`https://server.innliv.com/ads/${id}`);
       return data.ad;
     },
   });
@@ -66,7 +66,7 @@ const EditAd = () => {
 
 
       const { data: res } = await axios.put(
-        `http://localhost:5000/ads/${id}`,
+        `https://server.innliv.com/ads/${id}`,
         updateData
       );
 

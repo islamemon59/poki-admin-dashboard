@@ -14,7 +14,7 @@ const AllAds = () => {
   const { data: ads, isLoading } = useQuery({
     queryKey: ["ads"],
     queryFn: async () => {
-      const { data } = await axios.get("http://localhost:5000/ads");
+      const { data } = await axios.get("https://server.innliv.com/ads");
       return data.ads;
     },
   });
@@ -22,7 +22,7 @@ const AllAds = () => {
   // Delete ad mutation
 const mutation = useMutation({
   mutationFn: async (id) => {
-    return await axios.delete(`http://localhost:5000/ads/${id}`);
+    return await axios.delete(`https://server.innliv.com/ads/${id}`);
   },
   onSuccess: () => {
     queryClient.invalidateQueries(["ads"]);

@@ -27,7 +27,7 @@ const UpdateForm = () => {
   const { data: game, isLoading } = useQuery({
     queryKey: ["game", id],
     queryFn: async () => {
-      const { data } = await axios.get(`http://localhost:5000/games/${id}`);
+      const { data } = await axios.get(`https://server.innliv.com/games/${id}`);
       return data;
     },
   });
@@ -67,7 +67,7 @@ const onSubmit = async (formData) => {
     console.log("Sending updateData:", updateData);
 
     const { data: res } = await axios.put(
-      `http://localhost:5000/games/${id}`,
+      `https://server.innliv.com/games/${id}`,
       updateData
     );
 

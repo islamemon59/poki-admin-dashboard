@@ -14,7 +14,7 @@ const Games = () => {
   } = useQuery({
     queryKey: ["games"],
     queryFn: async () => {
-      const { data } = await axios.get("http://localhost:5000/games");
+      const { data } = await axios.get("https://server.innliv.com/games");
       return data;
     },
   });

@@ -30,7 +30,7 @@ const AddAdForm = () => {
         position: data.position,
       };
 
-      const res = await axios.post("http://localhost:5000/ads", adData);
+      const res = await axios.post("https://server.innliv.com/ads", adData);
 
       if (res.data?.success) {
         Swal.fire("Added!", "Ad has been added successfully.", "success");
