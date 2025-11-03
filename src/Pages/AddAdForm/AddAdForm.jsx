@@ -53,7 +53,7 @@ const AddAdForm = () => {
         adData.content = data.code; // HTML/JS code for Google Ads or any network
       }
 
-      const res = await axios.post("http://localhost:5000/ads", adData);
+      const res = await axios.post("https://server.innliv.com/ads", adData);
 
       if (res.data?.success) {
         Swal.fire("Added!", "Ad has been added successfully.", "success");
