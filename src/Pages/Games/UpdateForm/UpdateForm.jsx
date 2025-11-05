@@ -95,58 +95,58 @@ const onSubmit = async (formData) => {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Title */}
         <div>
-          <label className="font-semibold">Title</label>
+          <label className="font-semibold text-gray-900">Title</label>
           <input
             {...register("title", { required: true })}
             defaultValue={game?.title}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
             placeholder="Enter game title"
           />
         </div>
 
         {/* Category */}
         <div>
-          <label className="font-semibold">Category</label>
+          <label className="font-semibold text-gray-900">Category</label>
           <input
             {...register("category", { required: true })}
             defaultValue={game?.category}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
             placeholder="Shooting, Soccer, Racing..."
           />
         </div>
 
         {/* Game URL */}
         <div>
-          <label className="font-semibold">Game URL</label>
+          <label className="font-semibold text-gray-900">Game URL</label>
           <input
             {...register("gameUrl", { required: true })}
             defaultValue={game?.gameUrl}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
             placeholder="https://..."
           />
         </div>
 
         {/* Preview Video */}
         <div>
-          <label className="font-semibold">Preview Video</label>
+          <label className="font-semibold text-gray-900">Preview Video</label>
           <input
             {...register("previewVideo")}
             defaultValue={game?.previewVideo}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
             placeholder="https://..."
           />
         </div>
 
         {/* Thumbnail */}
         <div className="flex flex-col gap-2">
-          <label className="font-semibold text-gray-700">Thumbnail</label>
+          <label className="font-semibold text-gray-700 ">Thumbnail</label>
 
           {/* URL input */}
           <input
             type="url"
             {...register("thumbnail")}
             defaultValue={game?.thumbnail}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] text-gray-900 outline-none"
             placeholder="Enter image URL (https://...)"
           />
 
@@ -158,7 +158,7 @@ const onSubmit = async (formData) => {
             >
               <div className="flex flex-col items-center justify-center py-4">
                 <p className="text-sm text-gray-500">
-                  <span className="font-semibold">Click to upload</span> or drag
+                  <span className="font-semibold text-gray-900">Click to upload</span> or drag
                   & drop
                 </p>
                 <p className="text-xs text-gray-400 mt-1">
@@ -192,13 +192,13 @@ const onSubmit = async (formData) => {
 
         {/* Rating */}
         <div>
-          <label className="font-semibold">Rating</label>
+          <label className="font-semibold text-gray-900 ">Rating</label>
           <input
             type="number"
             step="0.1"
             {...register("rating")}
             defaultValue={game?.rating}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
             placeholder="e.g. 4.5"
           />
         </div>
@@ -210,7 +210,7 @@ const onSubmit = async (formData) => {
             {...register("description")}
             defaultValue={game?.description}
             rows="3"
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none resize-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none resize-none"
             placeholder="Write a short description about the game..."
           ></textarea>
         </div>
