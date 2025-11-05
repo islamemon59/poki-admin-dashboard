@@ -104,7 +104,7 @@ const AddAdForm = () => {
         <button
           type="button"
           className={`px-4 py-2 rounded-md ${
-            adType === "image" ? "bg-[#2E7A7A] text-white" : "bg-gray-200"
+            adType === "image" ? "bg-[#2E7A7A] text-white" : "bg-gray-400"
           }`}
           onClick={() => setAdType("image")}
         >
@@ -113,7 +113,7 @@ const AddAdForm = () => {
         <button
           type="button"
           className={`px-4 py-2 rounded-md ${
-            adType === "code" ? "bg-[#2E7A7A] text-white" : "bg-gray-200"
+            adType === "code" ? "bg-[#2E7A7A] text-white" : "bg-gray-400"
           }`}
           onClick={() => setAdType("code")}
         >
@@ -124,10 +124,10 @@ const AddAdForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Title */}
         <div>
-          <label className="font-semibold">Title</label>
+          <label className="font-semibold text-gray-900">Title</label>
           <input
             {...register("title", { required: true })}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
             placeholder="Ad title"
           />
         </div>
@@ -136,7 +136,7 @@ const AddAdForm = () => {
           <>
             {/* Image Upload */}
             <div>
-              <label className="font-semibold">Upload Image</label>
+              <label className="font-semibold text-gray-900">Upload Image</label>
               <input
                 type="file"
                 accept="image/*"
@@ -146,7 +146,7 @@ const AddAdForm = () => {
                     setPreviewUrl(URL.createObjectURL(e.target.files[0]));
                   }
                 }}
-                className="w-full border p-2 rounded-md"
+                className="w-full border p-2 rounded-md text-gray-900"
               />
               {previewUrl && (
                 <img
@@ -159,10 +159,10 @@ const AddAdForm = () => {
 
             {/* Redirect Link */}
             <div>
-              <label className="font-semibold">Redirect Link</label>
+              <label className="font-semibold text-gray-900">Redirect Link</label>
               <input
                 {...register("link")}
-                className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+                className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
                 placeholder="https://..."
               />
             </div>
@@ -171,11 +171,11 @@ const AddAdForm = () => {
 
         {adType === "code" && (
           <div>
-            <label className="font-semibold">Ad Code (Google/Other)</label>
+            <label className="font-semibold text-gray-900">Ad Code (Google/Other)</label>
             <textarea
               {...register("code")}
               rows={6}
-              className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+              className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
               placeholder="Paste ad HTML/JS code here"
             />
           </div>
@@ -183,10 +183,10 @@ const AddAdForm = () => {
 
         {/* Position Selector */}
         <div>
-          <label className="font-semibold">Position</label>
+          <label className="font-semibold text-gray-900">Position</label>
           <select
             {...register("position", { required: true })}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
           >
             <option value="">Select Position</option>
             <option value="left">Left Sidebar</option>
@@ -222,7 +222,7 @@ const AddAdForm = () => {
             {adsList.map((ad) => (
               <div
                 key={ad._id}
-                className="flex items-center justify-between border p-2 rounded-md"
+                className="flex items-center justify-between border border-gray-500 p-2 rounded-md"
               >
                 <div className="flex items-center gap-4">
                   {ad.type === "image" && (

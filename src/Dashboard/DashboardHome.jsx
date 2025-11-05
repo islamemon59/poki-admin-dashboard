@@ -5,14 +5,14 @@ import useDynamicTitle from "../Hooks/useDynamicTitle";
 
 export default function AdminDashboardHome() {
   useDynamicTitle("Home");
-const {stats, isLoading, refetchAll} = useDashboardData()
+  const { stats, isLoading, refetchAll } = useDashboardData();
 
-if(isLoading) return <Loader/>
+  if (isLoading) return <Loader />;
 
-refetchAll()
+  refetchAll();
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-10">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-10 max-w-6xl mx-auto">
       {/* Header */}
       <header className="mb-10 pt-4">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-1 tracking-tight">

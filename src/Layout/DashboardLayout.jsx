@@ -28,7 +28,7 @@ const DashboardLayout = () => {
       <button
         title="Side navigation"
         type="button"
-        className={`fixed left-2 top-1 z-40 block h-10 w-10 rounded bg-white dark:bg-gray-800 opacity-100 lg:hidden ${
+        className={`fixed left-2 top-1 z-40 block h-10 w-10 rounded bg-white opacity-100 lg:hidden ${
           isSideNavOpen
             ? "visible opacity-100 [&_span:nth-child(1)]:w-6 [&_span:nth-child(1)]:translate-y-0 [&_span:nth-child(1)]:rotate-45 [&_span:nth-child(3)]:w-0 [&_span:nth-child(2)]:-rotate-45 "
             : ""
@@ -42,15 +42,15 @@ const DashboardLayout = () => {
         <div className="absolute top-1/2 left-1/2 w-6 -translate-x-1/2 -translate-y-1/2 transform">
           <span
             aria-hidden="true"
-            className="absolute block h-0.5 w-9/12 -translate-y-2 transform rounded-full bg-slate-700 dark:bg-slate-300 transition-all duration-300"
+            className="absolute block h-0.5 w-9/12 -translate-y-2 transform rounded-full transition-all duration-300"
           ></span>
           <span
             aria-hidden="true"
-            className="absolute block h-0.5 w-6 transform rounded-full bg-slate-900 dark:bg-slate-100 transition duration-300"
+            className="absolute block h-0.5 w-6 transform rounded-full transition duration-300"
           ></span>
           <span
             aria-hidden="true"
-            className="absolute block h-0.5 w-1/2 origin-top-left translate-y-2 transform rounded-full bg-slate-900 dark:bg-slate-100 transition-all duration-300"
+            className="absolute block h-0.5 w-1/2 origin-top-left translate-y-2 transform rounded-full transition-all duration-300"
           ></span>
         </div>
       </button>
@@ -117,14 +117,14 @@ const DashboardLayout = () => {
       </aside>
 
       {/* 🛠 Change: add lg:ml-72 to prevent content overlap on large screens */}
-      <div className="lg:pl-76 p-4 max-w-7xl mx-auto bg-white dark:bg-gray-900 min-h-screen">
+      <div className="lg:pl-76 p-4  mx-auto bg-white min-h-screen">
         <Outlet />
       </div>
 
       {/* Backdrop */}
       <div
         className={`fixed top-0 bottom-0 left-0 right-0 z-30 transition-colors sm:hidden ${
-          isSideNavOpen ? "block bg-slate-900/80 dark:bg-black/80" : "hidden"
+          isSideNavOpen ? "block " : "hidden"
         }`}
         onClick={() => setIsSideNavOpen(false)}
       ></div>

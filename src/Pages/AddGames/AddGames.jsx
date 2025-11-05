@@ -76,20 +76,20 @@ const AddGames = () => {
       >
         {/* Title */}
         <div className="flex flex-col">
-          <label className="font-semibold mb-1">Title</label>
+          <label className="font-semibold mb-1 text-gray-900">Title</label>
           <input
             {...register("title", { required: true })}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
             placeholder="Enter game title"
           />
         </div>
 
         {/* Category */}
         <div className="flex flex-col">
-          <label className="font-semibold mb-1">Category</label>
+          <label className="font-semibold mb-1 text-gray-900">Category</label>
           <select
             {...register("category", { required: true })}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
             defaultValue=""
           >
             <option value="" disabled>
@@ -105,17 +105,17 @@ const AddGames = () => {
 
         {/* Game URL */}
         <div className="flex flex-col">
-          <label className="font-semibold mb-1">Game URL</label>
+          <label className="font-semibold mb-1 text-gray-900">Game URL</label>
           <input
             {...register("gameUrl", { required: true })}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
             placeholder="https://..."
           />
         </div>
 
         {/* File Upload */}
         <div className="flex flex-col md:col-span-1">
-          <label className="font-semibold mb-1">Upload Thumbnail</label>
+          <label className="font-semibold mb-1 text-gray-900">Upload Thumbnail</label>
           <div className="flex items-center justify-center w-full">
             <label className="flex flex-col items-center justify-center w-full border-2 border-dashed border-gray-300 rounded-md cursor-pointer bg-gray-50 hover:bg-gray-100 transition">
               <div className="flex flex-col items-center justify-center py-4">
@@ -152,7 +152,7 @@ const AddGames = () => {
 
         {/* Description */}
         <div className="flex flex-col md:col-span-2">
-          <label className="font-semibold mb-1">Description</label>
+          <label className="font-semibold mb-1 text-gray-900">Description</label>
 
           <Controller
             name="description"
@@ -179,12 +179,12 @@ const AddGames = () => {
 
         {/* Meta Description */}
         <div className="flex flex-col md:col-span-2 mt-2">
-          <label className="font-semibold mb-1">Meta Description</label>
+          <label className="font-semibold mb-1 text-gray-900">Meta Description</label>
           <textarea
             {...register("metaDescription")}
             rows="2"
             maxLength={160}
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none resize-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none resize-none"
             placeholder="Enter short SEO-friendly description (max 160 chars)"
           ></textarea>
           <p className="text-xs text-gray-400 mt-1">
@@ -194,11 +194,11 @@ const AddGames = () => {
 
         {/* Meta Keywords */}
         <div className="flex flex-col md:col-span-2 mt-2">
-          <label className="font-semibold mb-1">Meta Keywords</label>
+          <label className="font-semibold mb-1 text-gray-900">Meta Keywords</label>
           <input
             {...register("metaKeywords")}
             type="text"
-            className="w-full border p-2 rounded-md focus:ring-2 focus:ring-[#2E7A7A] outline-none"
+            className="w-full border p-2 rounded-md focus:ring-2 text-gray-900 focus:ring-[#2E7A7A] outline-none"
             placeholder="e.g. car games, racing, multiplayer"
           />
           <p className="text-xs text-gray-400 mt-1">
