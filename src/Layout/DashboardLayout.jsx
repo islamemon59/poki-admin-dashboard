@@ -59,13 +59,13 @@ const DashboardLayout = () => {
       <aside
         id="nav-menu-5"
         aria-label="Side navigation"
-        className={`fixed top-0 bottom-0 left-0 z-40 flex w-76 pt-8 flex-col border-r border-emerald-700 dark:border-emerald-800 bg-emerald-600 dark:bg-emerald-900 transition-transform duration-300 ${
+        className={`fixed top-0 bottom-0 left-0 z-40 flex w-76 pt-8 flex-col border-r border-emerald-700  bg-emerald-600 transition-transform duration-300 ${
           isSideNavOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
         <button
           onClick={() => setIsSideNavOpen(false)}
-          className="absolute top-3 right-3 text-white hover:text-black lg:hidden sm:block dark:hover:text-white cursor-pointer"
+          className="absolute top-3 right-3 text-white hover:text-black lg:hidden sm:block cursor-pointer"
           aria-label="Close side navigation"
         >
           <MdClose size={24} />
@@ -100,15 +100,15 @@ const DashboardLayout = () => {
         </div> */}
         <nav
           aria-label="side navigation"
-          className="flex-1 divide-y divide-emerald-700 dark:divide-emerald-800 overflow-auto"
+          className="flex-1 divide-y divide-emerald-700 overflow-auto"
         >
           <DashboardNavLinks />
         </nav>
 
-        <footer className="border-t border-emerald-700 dark:border-emerald-800 p-3">
+        <footer className="border-t border-emerald-700 p-3">
           <button
             onClick={handleLogOut}
-            className="flex w-full items-center justify-center gap-2 rounded p-3 font-bold text-white transition-colors hover:text-red-500 dark:hover:text-emerald-300"
+            className="flex w-full items-center justify-center gap-2 rounded p-3 font-bold text-white transition-colors hover:text-red-500"
           >
             <BiLogOut size={24} />
             Logout
